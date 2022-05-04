@@ -1,10 +1,17 @@
 import React from 'react';
-import WeekDays from './components/WeekDays/Component';
+import ActivityCard from './components/ActivityCard/Component';
 
 function App() {
+
+  const activeDay = {
+    sunday: 'active',
+    friday: 'active'
+  }
+
   return (
     <div className="App">
-      <WeekDays />
+      <ActivityCard />
+        
     </div>
   );
 }

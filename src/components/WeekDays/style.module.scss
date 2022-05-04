@@ -6,15 +6,34 @@
     justify-content: $halign;
 }
 
-.circle {
-    @include center-flex($valign:end);
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-        
-    background-color: colors.$inactive-01;
-    color: colors.$neutral-01;
-    span {
+.daysWrapper {
+    @include center-flex( $halign: space-between );
+    flex-direction: row;
+    width: 280px;
+    .circle {
+        @include center-flex;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        color: colors.$neutral-01;
+        span {
+            font-weight: bold;
+        }
+    }
+    .inactive {
+        background-color: colors.$inactive-02;
+        font-weight: normal;
+    }
+    
+    .selected {
+        background-color: colors.$inactive-01;
+        font-weight: normal;
+    }
+    
+    .active {
+        background-color: colors.$primary-01;
         font-weight: bold;
     }
 }
+
+
