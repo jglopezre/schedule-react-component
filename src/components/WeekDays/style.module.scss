@@ -1,0 +1,20 @@
+@use '../../styles/colors.scss';
+
+@mixin center-flex($valign: center, $halign: center) {
+    display: flex;
+    align-items: $valign;
+    justify-content: $halign;
+}
+
+.circle {
+    @include center-flex($valign:end);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+        
+    background-color: colors.$inactive-01;
+    color: colors.$neutral-01;
+    span {
+        font-weight: bold;
+    }
+}
