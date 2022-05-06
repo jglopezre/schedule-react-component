@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ActivityBar from '../ActivityBar/Component';
 import styles from './style.module.scss';
 
 const ActivityCard = ( {children} ) => {
 
     const { cardWrapper, addButton, textBox, upperBox } = styles;
+
+    const weekOne = {
+        monday: true,
+        saturday: true
+    }
     
+
     return (
         <div className={ cardWrapper }>
             <div className={ upperBox }>
@@ -16,10 +22,10 @@ const ActivityCard = ( {children} ) => {
                 <div>
                     <button className={ addButton }><span>+ Agregar Horario</span></button>
                 </div>
-                
             </div>
             <div>
-                <ActivityBar />
+                <ActivityBar daysObj={ weekOne }/>
+                
             </div>
             
         </div>

@@ -3,6 +3,7 @@
 .barWrapper {
     display: flex;
     flex-direction: row;
+    align-items: center;
     min-height: 3.5rem;
     border-radius: 20px;
     background-color: colors.$neutral-01;
@@ -11,13 +12,17 @@
         left: 3rem;
         right: 3rem;
     }
+    margin: {
+        top: 0.5rem;
+        bottom: 0.5rem;
+    }
 }
 
 .okButton {
     border: none;
     background-color: colors.$neutral-01;
     width: 100px;
-    height: 2.5rem;
+    height: 2rem;
     box-shadow: 0 3px 5px colors.$shadow-01;
     border-radius: 25px;
 }

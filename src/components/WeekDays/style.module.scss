@@ -11,13 +11,16 @@
     flex-direction: row;
     width: 280px;
     .circle {
-        @include center-flex;
         width: 24px;
         height: 24px;
         border-radius: 50%;
+        border: none;
         color: colors.$neutral-01;
-        span {
-            font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 5px colors.$shadow-01;
         }
     }
     .inactive {
