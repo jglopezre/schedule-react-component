@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import clsName from 'classnames';
 import styles from './style.module.scss';
 
@@ -10,67 +10,90 @@ const WeekDays = ( {
     thursday = false,
     friday = false,
     saturday = false,
-    isEnable = true } ) => {
+    isEnabled = false,
+    changeDaysFunction } ) => {
 
-    const { circle, active, selected, inactive } = styles;
+    const { circle, active, selected, inactive, disabled } = styles;
 
-    const daysArr = [sunday, monday, tuesday, wednesday, thursday, friday, saturday];
+    let daysArr = [sunday, monday, tuesday, wednesday, thursday, friday, saturday];
     
-    const [styleState, setStyleState] = useState(() => {
+    const settingInitialStyle = ( weekArray, enabled ) => {
+        
         let styleArr = [];
 
-        const setInitialState = ( index ) => {
-            if ( index ){
-                if( isEnable) {
+        const setInitialState = ( isActive ) => {
+            if ( isActive ){
+                if( enabled ) {
                     return clsName(circle, active);
                 } else {
-                    return clsName(circle, selected);
+                    return clsName(circle, selected, disabled);
                 }
             } else {
-                return clsName(circle, inactive);
+                if ( enabled ){
+                    return clsName(circle, inactive);
+                } else {
+                    return clsName(circle, inactive, disabled)
+                }
             }
         }
 
         for(let i = 0; i < 7 ; i++) {
-            styleArr.push( [ setInitialState( daysArr[i] ), daysArr[i] ] );
+            styleArr.push( [ setInitialState( weekArray[i] ), weekArray[i] ] );
         }
 
-        console.log(styleArr);
         return styleArr;
+    }
 
+    const [styleState, setStyleState] = useState( () => {
+        return settingInitialStyle( daysArr, isEnabled )
     });
 
+    
+    useEffect( () => {
+        setStyleState( () => {
+            return [...settingInitialStyle( daysArr, isEnabled )];
+        })
+    }, [isEnabled])
 
-    const changingDay = ( day ) => {
-        if ( isEnable ) {
+    const changingDay = ( day, dayElements ) => {
+        if ( isEnabled ) {
             if( !styleState[ day ][1] ) {
                 setStyleState( ( data ) => {
                     data[ day ][0] = clsName( circle, active );
                     data[ day ][1] = true;
                     return [...data];
                 });
+                dayElements[ day ] = true;
             } else {
                 setStyleState( ( data ) => {
                     data[ day ][0] = clsName( circle, inactive );
                     data[ day ][1] = false;
                     return [...data];
                 });
+                dayElements[ day ] = false;
             }
-            console.log( styleState[ day ][0] );
-            console.log( styleState[ day ][1] );
+            changeDaysFunction({
+                sunday: dayElements[0],
+                monday: dayElements[1],
+                tuesday: dayElements[2],
+                wednesday: dayElements[3],
+                thursday: dayElements[4],
+                friday: dayElements[5],
+                saturday: dayElements[6]
+            })
         }
     }
-      
+
+   
     return (
         <div className={ styles.daysWrapper }>
-            {console.log('aqui')}
-            <button className={ styleState[0][0]} onClick={ () => { changingDay(0) } } >D</button>
-            <button className={ styleState[1][0]} onClick={ () => { changingDay(1) } } >L</button>
-            <button className={ styleState[2][0]} onClick={ () => { changingDay(2) } } >M</button>
-            <button className={ styleState[3][0]} onClick={ () => { changingDay(3) } } >M</button>
-            <button className={ styleState[4][0]} onClick={ () => { changingDay(4) } } >J</button>
-            <button className={ styleState[5][0]} onClick={ () => { changingDay(5) } } >V</button>
-            <button className={ styleState[6][0]} onClick={ () => { changingDay(6) } } >S</button>
+            <button className={ styleState[0][0]} onClick={ () => { changingDay(0, daysArr) } } >D</button>
+            <button className={ styleState[1][0]} onClick={ () => { changingDay(1, daysArr) } } >L</button>
+            <button className={ styleState[2][0]} onClick={ () => { changingDay(2, daysArr) } } >M</button>
+            <button className={ styleState[3][0]} onClick={ () => { changingDay(3, daysArr) } } >M</button>
+            <button className={ styleState[4][0]} onClick={ () => { changingDay(4, daysArr) } } >J</button>
+            <button className={ styleState[5][0]} onClick={ () => { changingDay(5, daysArr) } } >V</button>
+            <button className={ styleState[6][0]} onClick={ () => { changingDay(6, daysArr) } } >S</button>
         </div>
     )
 }

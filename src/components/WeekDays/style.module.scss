@@ -10,6 +10,11 @@
     @include center-flex( $halign: space-between );
     flex-direction: row;
     width: 280px;
+    border-left: solid 2px colors.$inactive-02;
+    padding: {
+        left: 1rem;
+        right: 1rem;
+    }
     .circle {
         width: 24px;
         height: 24px;
@@ -31,11 +36,18 @@
     .selected {
         background-color: colors.$inactive-01;
         font-weight: normal;
+        
     }
     
     .active {
         background-color: colors.$primary-01;
         font-weight: bold;
+    }
+
+    .disabled:hover {
+        transform: none;
+        box-shadow: none;
+        cursor: auto;
     }
 }
 

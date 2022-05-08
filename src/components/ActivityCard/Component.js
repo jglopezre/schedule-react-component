@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import ActivityBar from '../ActivityBar/Component';
 import styles from './style.module.scss';
 
@@ -8,8 +8,17 @@ const ActivityCard = ( {children} ) => {
 
     const weekOne = {
         monday: true,
-        saturday: true
+        saturday: true,
+        sunday: true,
     }
+
+    const weekTwo = {
+        sunday: true,
+        tuesday: true,
+        friday: true,
+        saturday: true,
+    }
+    
     
 
     return (

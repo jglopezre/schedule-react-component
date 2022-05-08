@@ -1,0 +1,69 @@
+@use '../../styles/colors.scss';
+@use 'sass:math';
+
+
+$slotWidth: 28px;
+$slotHeight: 16px;
+$knobDiameter: 24px;
+
+.selectorContainer {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: {
+        left: 2rem;
+        right: 2rem;
+    };
+    >div {
+        width: $slotWidth;
+        height: $slotHeight;
+        border-radius: 10px;
+        position: relative;
+        >div {
+            width: $knobDiameter;
+            height: $knobDiameter;
+            border-radius: 50%;
+            border: none;
+            background-color: colors.$neutral-01;
+            box-shadow: 0 1px 2px 1px colors.$shadow-01;
+            cursor: pointer;
+            transition: 0.2s;
+            position: absolute;
+            top: math.div($slotHeight, 2) - math.div($knobDiameter, 2);
+            
+        }
+    }
+}
+
+.selectorKnobInactive {
+    background-color: colors.$inactive-02;
+    > div {
+        left: - math.div($knobDiameter, 2);
+    }
+    
+}
+
+.selectorKnobActive {
+    background-color: colors.$primary-01;
+    > div {
+        left: $slotWidth - math.div($knobDiameter, 2);
+    }
+}
+
+.selectorKnobToInactive{
+    background-color: colors.$inactive-02;
+    > div {
+        transform: translateX( - math.div($knobDiameter, 2));
+        transition: 0.2s;
+    }
+    
+}
+
+.selectorKnobToActive{
+    background-color: colors.$primary-01;
+    > div {
+        transform: translateX($slotWidth - math.div($knobDiameter, 2));
+        transition: 0.2s;
+    }
+}
