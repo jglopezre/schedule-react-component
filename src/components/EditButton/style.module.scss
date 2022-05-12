@@ -1,0 +1,33 @@
+@use '../../styles/colors.scss';
+
+.editButton {
+    border: none;
+    background-color: colors.$neutral-01;
+    width: 80px;
+    height: 2rem;
+    box-shadow: 0 3px 5px colors.$shadow-01;
+    border-radius: 25px;
+    transition: transform 0.2s;
+    
+     
+}
+
+.inactive {
+    color: colors.$inactive-01;
+}
+
+.enable {
+    color: colors.$primary-01;
+    font-weight: bold;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.active {
+    color: colors.$secondary-01;
+    font-weight: bold;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
