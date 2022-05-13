@@ -8,8 +8,6 @@
     box-shadow: 0 3px 5px colors.$shadow-01;
     border-radius: 25px;
     transition: transform 0.2s;
-    
-     
 }
 
 .inactive {
@@ -19,15 +17,13 @@
 .enable {
     color: colors.$primary-01;
     font-weight: bold;
-    &:hover {
-        transform: scale(1.1);
-    }
 }
 
 .active {
     color: colors.$secondary-01;
     font-weight: bold;
-    &:hover {
-        transform: scale(1.1);
-    }
+}
+
+.hover:hover {
+    transform: scale(1.1);
 }

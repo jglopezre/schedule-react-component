@@ -21,33 +21,39 @@
         border-radius: 50%;
         border: none;
         color: colors.$neutral-01;
-        cursor: pointer;
-        transition: 0.2s;
-        &:hover {
-            transform: scale(1.1);
-            box-shadow: 0 3px 5px colors.$shadow-01;
-        }
-    }
-    .inactive {
-        background-color: colors.$inactive-02;
-        font-weight: normal;
-    }
-    
-    .selected {
-        background-color: colors.$inactive-01;
-        font-weight: normal;
         
+        transition: 0.2s;
     }
     
-    .active {
-        background-color: colors.$primary-01;
-        font-weight: bold;
-    }
+}
 
-    .disabled:hover {
-        transform: none;
-        box-shadow: none;
-        cursor: auto;
+.inactive {
+    background-color: colors.$inactive-02;
+    font-weight: normal;
+}
+
+.selected {
+    background-color: colors.$inactive-01;
+    font-weight: normal;
+    
+}
+
+.active {
+    background-color: colors.$primary-01;
+    font-weight: bold;
+}
+
+.disabled:hover {
+    transform: none;
+    box-shadow: none;
+    cursor: auto;
+}
+
+.hover {
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 3px 5px colors.$shadow-01;
     }
 }
 

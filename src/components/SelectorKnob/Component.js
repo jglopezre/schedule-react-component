@@ -3,7 +3,13 @@ import styles from './style.module.scss';
 
 const SelectorKnob = ({ selectState, isEnabled = true }) => {
   
-  const { selectorContainer, selectorKnobInactive, selectorKnobActive, selectorKnobToInactive, selectorKnobToActive } = styles;
+  const { 
+    selectorContainer,
+    selectorKnobInactive,
+    selectorKnobActive,
+    selectorKnobToInactive,
+    selectorKnobToActive
+  } = styles;
 
   const [selectorState, setSelectorState] = useState(() => {
     let style = {};
@@ -29,15 +35,24 @@ const SelectorKnob = ({ selectState, isEnabled = true }) => {
         slotStyle: selectorKnobToActive,
         slotActive: true
       });
-      selectState( true );
+      selectState( ( state ) => {
+        return {
+          ...state,
+          knobSelectorState: true
+        }
+      });
     } else {
       setSelectorState({
         slotStyle: selectorKnobToInactive,
         slotActive: false
       });
-      selectState( false );
+      selectState( ( state ) => {
+        return {
+          ...state,
+          knobSelectorState: false
+          }
+      });
     }
-    
   }
 
   return (

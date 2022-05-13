@@ -11,26 +11,35 @@ const WeekDays = ( {
     friday = false,
     saturday = false,
     isEnabled = false,
+    isEditable = false,
     changeDaysFunction } ) => {
 
-    const { circle, active, selected, inactive, disabled } = styles;
+    const { circle, active, selected, inactive, disabled, hover } = styles;
 
     let daysArr = [sunday, monday, tuesday, wednesday, thursday, friday, saturday];
     
-    const settingInitialStyle = ( weekArray, enabled ) => {
+    const settingInitialStyle = ( weekArray, enabled, editable ) => {
         
         let styleArr = [];
 
         const setInitialState = ( isActive ) => {
             if ( isActive ){
                 if( enabled ) {
-                    return clsName(circle, active);
+                    if ( editable ){
+                        return clsName(circle, active, hover);
+                    } else {
+                        return clsName(circle, active);
+                    }
                 } else {
                     return clsName(circle, selected, disabled);
                 }
             } else {
                 if ( enabled ){
-                    return clsName(circle, inactive);
+                    if ( editable ) {
+                        return clsName(circle, inactive, hover);
+                    } else {
+                        return clsName(circle, inactive);
+                    }
                 } else {
                     return clsName(circle, inactive, disabled)
                 }
@@ -45,28 +54,28 @@ const WeekDays = ( {
     }
 
     const [styleState, setStyleState] = useState( () => {
-        return settingInitialStyle( daysArr, isEnabled )
+        return settingInitialStyle( daysArr, isEnabled, isEditable );
     });
 
     
     useEffect( () => {
         setStyleState( () => {
-            return [...settingInitialStyle( daysArr, isEnabled )];
+            return [...settingInitialStyle( daysArr, isEnabled, isEditable )];
         })
-    }, [isEnabled])
+    }, [isEnabled, isEditable]);
 
     const changingDay = ( day, dayElements ) => {
-        if ( isEnabled ) {
+        if ( isEnabled && isEditable ) {
             if( !styleState[ day ][1] ) {
                 setStyleState( ( data ) => {
-                    data[ day ][0] = clsName( circle, active );
+                    data[ day ][0] = clsName( circle, active, hover );
                     data[ day ][1] = true;
                     return [...data];
                 });
                 dayElements[ day ] = true;
             } else {
                 setStyleState( ( data ) => {
-                    data[ day ][0] = clsName( circle, inactive );
+                    data[ day ][0] = clsName( circle, inactive, hover );
                     data[ day ][1] = false;
                     return [...data];
                 });

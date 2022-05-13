@@ -4,19 +4,38 @@ import SelectorKnob from '../SelectorKnob/Component';
 import WeekDays from '../WeekDays/Component';
 import styles from './style.module.scss';
 
-const ActivityBar = ({ daysObj, children }) => {
+const ActivityBar = ({ daysObj }) => {
 
-  const { barWrapper, okButton } = styles;
+  const { barWrapper } = styles;
 
-  const [ barState, setBarState ] = useState( true );
+  const [ { knobSelectorState, editButtonState }, setBarState ] = useState({
+    knobSelectorState: false,
+    editButtonState: false,
+  });
 
   const [daysStates, setDaysStates] = useState( daysObj );
 
   return (
     <div className={ barWrapper }>
-        <SelectorKnob selectState={ setBarState } isEnabled={ true }/>
-        <WeekDays { ...daysStates } changeDaysFunction={ setDaysStates } isEnabled={ barState } />
-        <EditButton  isEnabled={ barState } />
+      
+        <SelectorKnob 
+          selectState={ setBarState }
+          isEnabled={ knobSelectorState }
+        />
+
+        <WeekDays
+          { ...daysStates }
+          changeDaysFunction={ setDaysStates }
+          isEnabled={ knobSelectorState }
+          isEditable={ editButtonState }
+        />
+
+        <EditButton
+          isEnabled={ knobSelectorState }
+          buttonState={ setBarState }
+        />
+
+
     </div>
   )
 }

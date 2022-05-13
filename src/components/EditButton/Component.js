@@ -3,9 +3,11 @@ import classNames from 'classnames';
 import styles from './style.module.scss';
 
 
-const { editButton, active, enable, inactive } = styles;
 
-const EditButton = ({ isEnabled = true }) => {
+
+const EditButton = ({ isEnabled = true, buttonState }) => {
+
+  const { editButton, active, enable, inactive, hover } = styles;
 
   const settingInitialStyle = ( enabled, stateData = {} ) => {
     stateData.enabled = enabled;
@@ -21,11 +23,9 @@ const EditButton = ({ isEnabled = true }) => {
     return stateData;
   }
 
-  const [ buttonState, setButtonState ] = useState( () => {
+  const [ { buttonStyle, isActive, enabled, buttonText }, setButtonState ] = useState( () => {
     return settingInitialStyle(isEnabled );
   });
-
-  const { buttonStyle, isActive, enabled, buttonText } = buttonState;
 
   useEffect(() => {
     setButtonState( ( data ) => {
@@ -39,18 +39,30 @@ const EditButton = ({ isEnabled = true }) => {
       
       if( isActive ) {
         setButtonState( (data) => {
-          data.buttonStyle =  classNames(editButton, enable);
+          data.buttonStyle =  classNames(editButton, enable, hover);
           data.isActive = false;
           data.buttonText = 'Editar';
          console.log(data)
           return {...data};
-        })
+        });
+        buttonState( (state) => {
+          return {
+            ...state,
+            editButtonState: false
+          }
+        });
       } else {
         setButtonState( (data) => {
-          data.buttonStyle = classNames(editButton, active);
+          data.buttonStyle = classNames(editButton, active, hover);
           data.isActive = true;
           data.buttonText = 'Guardar';
           return {...data};
+        });
+        buttonState( (state) => {
+          return {
+            ...state,
+            editButtonState: true
+          }
         });
       }
     }

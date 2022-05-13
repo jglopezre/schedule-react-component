@@ -4,22 +4,17 @@ import styles from './style.module.scss';
 
 const ActivityCard = ( {children} ) => {
 
-    const { cardWrapper, addButton, textBox, upperBox } = styles;
+    const { cardWrapper, addButton, upperBox } = styles;
 
-    const weekOne = {
-        monday: true,
-        saturday: true,
-        sunday: true,
-    }
+    const [activityBars, setActivityBars] = useState([]);
 
-    const weekTwo = {
-        sunday: true,
-        tuesday: true,
-        friday: true,
-        saturday: true,
-    }
-    
-    
+    const addNewActivityBar = () => {
+        setActivityBars( (data) => {
+            data.push( <ActivityBar key={ Math.random() }/> );
+            return [...data];
+        });
+    };
+    console.log(activityBars);
 
     return (
         <div className={ cardWrapper }>
@@ -29,14 +24,12 @@ const ActivityCard = ( {children} ) => {
                     <p>Cree y personalice los días y horarios  en los que estará disponible para responder solicitudes de RESERVAS</p>
                 </div>
                 <div>
-                    <button className={ addButton }><span>+ Agregar Horario</span></button>
+                    <button className={ addButton } onClick={ () => {addNewActivityBar()} }><span>+ Agregar Horario</span></button>
                 </div>
             </div>
             <div>
-                <ActivityBar daysObj={ weekOne }/>
-                
+                { activityBars }
             </div>
-            
         </div>
     )
 }
