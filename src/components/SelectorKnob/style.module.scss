@@ -7,20 +7,12 @@ $slotHeight: 16px;
 $knobDiameter: 24px;
 
 .selectorContainer {
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: {
-        left: 2rem;
-        right: 2rem;
-    };
-    >div {
+    > div {
         width: $slotWidth;
         height: $slotHeight;
         border-radius: 10px;
         position: relative;
-        >div {
+        > div {
             width: $knobDiameter;
             height: $knobDiameter;
             border-radius: 50%;

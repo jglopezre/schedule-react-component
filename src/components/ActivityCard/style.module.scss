@@ -24,22 +24,22 @@ p {
     min-width: 360px;
     border-radius: 25px;
     box-shadow: 0 5px 10px colors.$shadow-01;
-
-}
-
-.upperBox {
-    @include flexCenter;
-    flex-direction: row;
-    >div:nth-child(1) {
-        display: flex;
+    .upperBox {
+        @include flexCenter;
+        flex-direction: row;
+        >div:nth-child(1) {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 2;
+        }
+        >div:nth-child(2) {
+            flex-grow: 1;
+        }
+    }
+    .contentBox {
+        @include flexCenter;
+        width: 90%;
         flex-direction: column;
-    }
-    >div:nth-child(1) {
-        flex-grow: 2;
-    }
-    >div:nth-child(2) {
-        flex-grow: 1;
-
     }
 }
 

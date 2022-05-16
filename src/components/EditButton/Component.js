@@ -4,10 +4,9 @@ import styles from './style.module.scss';
 
 
 
-
 const EditButton = ({ isEnabled = true, buttonState }) => {
 
-  const { editButton, active, enable, inactive, hover } = styles;
+  const { editButton, active, enable, inactive, hover, deleteButtonBox } = styles;
 
   const settingInitialStyle = ( enabled, stateData = {} ) => {
     stateData.enabled = enabled;
@@ -27,6 +26,8 @@ const EditButton = ({ isEnabled = true, buttonState }) => {
     return settingInitialStyle(isEnabled );
   });
 
+  
+
   useEffect(() => {
     setButtonState( ( data ) => {
       return {...settingInitialStyle( isEnabled, data )};
@@ -42,7 +43,6 @@ const EditButton = ({ isEnabled = true, buttonState }) => {
           data.buttonStyle =  classNames(editButton, enable, hover);
           data.isActive = false;
           data.buttonText = 'Editar';
-         console.log(data)
           return {...data};
         });
         buttonState( (state) => {
@@ -68,11 +68,7 @@ const EditButton = ({ isEnabled = true, buttonState }) => {
     }
   }
 
-  return (
-    <div>
-        <button className={ buttonStyle } onClick={ () => { changingButtonState() }}>{buttonText}</button>
-    </div>
-  )
+  return <button className={ buttonStyle } onClick={ () => { changingButtonState() }}>{buttonText}</button>
 }
 
 export default EditButton

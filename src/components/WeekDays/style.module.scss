@@ -10,21 +10,14 @@
     @include center-flex( $halign: space-between );
     flex-direction: row;
     width: 280px;
-    border-left: solid 2px colors.$inactive-02;
-    padding: {
-        left: 1rem;
-        right: 1rem;
-    }
     .circle {
         width: 24px;
         height: 24px;
         border-radius: 50%;
         border: none;
         color: colors.$neutral-01;
-        
         transition: 0.2s;
     }
-    
 }
 
 .inactive {

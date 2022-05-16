@@ -11,7 +11,7 @@ const SelectorKnob = ({ selectState, isEnabled = true }) => {
     selectorKnobToActive
   } = styles;
 
-  const [selectorState, setSelectorState] = useState(() => {
+  const [ { slotStyle, slotActive } , setSelectorState] = useState(() => {
     let style = {};
     if( isEnabled ) {
       style = {
@@ -27,7 +27,6 @@ const SelectorKnob = ({ selectState, isEnabled = true }) => {
     return style;
   });
 
-  const { slotStyle, slotActive } = selectorState;
 
   const changingSelector = ( state ) => {
     if ( !state ) {

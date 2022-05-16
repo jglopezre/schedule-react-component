@@ -1,0 +1,30 @@
+@use '../../styles/colors.scss';
+@use 'sass:math';
+
+$boxHeight: 32px;
+$boxWidth: 48px;
+
+.deleteButtonBox {
+    width: $boxWidth;
+    height: $boxHeight;
+    position: relative;
+    overflow: hidden;
+}
+
+.deleteButton {
+    border: none;
+    position: absolute;
+    background-color: colors.$neutral-01;
+    transition: 0.3s;
+    opacity: 0;
+    left: - math.div( $boxWidth, 2);
+    top: (math.div( $boxHeight, 2 ) - 10 ); 
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.active {
+    transform: translate( $boxWidth ) rotate(360deg);
+    opacity: 1;
+}

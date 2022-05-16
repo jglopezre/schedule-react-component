@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 
 const ActivityCard = ( {children} ) => {
 
-    const { cardWrapper, addButton, upperBox } = styles;
+    const { cardWrapper, addButton, upperBox, contentBox } = styles;
 
     const [activityBars, setActivityBars] = useState([]);
 
@@ -14,7 +14,6 @@ const ActivityCard = ( {children} ) => {
             return [...data];
         });
     };
-    console.log(activityBars);
 
     return (
         <div className={ cardWrapper }>
@@ -27,7 +26,7 @@ const ActivityCard = ( {children} ) => {
                     <button className={ addButton } onClick={ () => {addNewActivityBar()} }><span>+ Agregar Horario</span></button>
                 </div>
             </div>
-            <div>
+            <div className={ contentBox }>
                 { activityBars }
             </div>
         </div>
